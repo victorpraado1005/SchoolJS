@@ -11,7 +11,23 @@
       <input type="text" id="lastNameStudent" placeholder="last name" /><br />
       <input type="text" id="n1" placeholder="n1" />
       <input type="text" id="n2" placeholder="n2" />
-      <button onclick="criarAluno()">Criar aluno</button>
+      <button onclick="verificaDados()">Criar aluno</button>
+    </div>
+    <br>
+    <div>
+      <button onclick="mostrarAlunos()">Mostrar alunos</button>
+      <button onclick="esconderAlunos()">Esconder alunos</button>
+      <table>
+        <thead>
+          <th>Nome</th>
+          <th>Sobrenome</th>
+          <th>Nota 1</th>
+          <th>Nota 2</th>
+        </thead>
+        <tbody id="tbody">
+
+        </tbody>
+      </table>
     </div>
 
     <div>
