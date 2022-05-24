@@ -31,11 +31,12 @@
         <option value="C">Turma C</option>
         <option value="D">Turma D</option>
       </select>
-      <button onclick="mostrarAlunos()">Mostrar alunos</button>
+      <button onclick="showStudent()">Mostrar alunos</button>
       <button onclick="hideStudents()">Esconder alunos</button>
       <br /><br />
       <table>
         <thead>
+          <th>NM</th>
           <th>Nome</th>
           <th>Sobrenome</th>
           <th>Nota 1</th>
@@ -47,9 +48,27 @@
     </div>
 
     <div>
-      <span id="name"></span>
-      <span id="lastName"></span>
-      <span id="media"></span>
+      <br><br><br><br>
+      <span>Insira o NM que você deseja buscar:</span><br>
+      <input type="text" id="searchNM" placeholder="Digite o NM...">
+      <button onclick="getStudent()">Buscar</button>
+      <button onclick="clearSearch()">Limpar Busca</button>
+    </div>
+
+    <div>
+      <br>
+      <table>
+        <thead>
+          <th>NM</th>
+          <th>Nome</th>
+          <th>Sobrenome</th>
+          <th>Turma</th>
+          <th>Nota 1</th>
+          <th>Nota 2</th>
+          <th>Média</th>
+        </thead>
+        <tbody id="tbodySearch"></tbody>
+      </table>
     </div>
 
     <script src="app.js"></script>
