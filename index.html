@@ -11,22 +11,38 @@
       <input type="text" id="lastNameStudent" placeholder="last name" /><br />
       <input type="text" id="n1" placeholder="n1" />
       <input type="text" id="n2" placeholder="n2" />
+      <br />
+      <br />
+      <select name="turma" id="turma">
+        <option value="A">Turma A</option>
+        <option value="B">Turma B</option>
+        <option value="C">Turma C</option>
+        <option value="D">Turma D</option></select
+      ><br /><br />
       <button onclick="verificaDados()">Criar aluno</button>
     </div>
-    <br>
+    <br />
     <div>
+      <br />
+      <span>Visualizar alunos da turma: </span>
+      <select name="turmaVisualizar" id="turmaVisualizar">
+        <option value="A">Turma A</option>
+        <option value="B">Turma B</option>
+        <option value="C">Turma C</option>
+        <option value="D">Turma D</option>
+      </select>
       <button onclick="mostrarAlunos()">Mostrar alunos</button>
-      <button onclick="esconderAlunos()">Esconder alunos</button>
+      <button onclick="hideStudents()">Esconder alunos</button>
+      <br /><br />
       <table>
         <thead>
           <th>Nome</th>
           <th>Sobrenome</th>
           <th>Nota 1</th>
           <th>Nota 2</th>
+          <th>Média</th>
         </thead>
-        <tbody id="tbody">
-
-        </tbody>
+        <tbody id="tbody"></tbody>
       </table>
     </div>
 
