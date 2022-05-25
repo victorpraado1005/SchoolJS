@@ -93,40 +93,45 @@ function hideStudents(){
   tbody.innerText = '';
 }
 
-function getStudent(){
+async function getStudent(){
   var searchNM = document.getElementById("searchNM").value
-  let tbodySearch = document.getElementById("tbodySearch")
-  tbodySearch.innerText = ''
-  //false = não encontrou nenhum aluno
   var controller = false;
   if (alunos.length == 0){
     alert("Não existem alunos cadastrados!")
   }else{
-    for(let i = 0; i < alunos.length; i++){
-      if(searchNM == alunos[i].nm){
-        let trSearch = tbodySearch.insertRow();
+      searchStudent(searchNM, controller)
+    }
+  }
 
-        let td_nmFound = trSearch.insertCell()
-        let td_nameFound = trSearch.insertCell()
-        let td_lastNameFound = trSearch.insertCell()
-        let td_classFound = trSearch.insertCell()
-        let td_n1Found = trSearch.insertCell()
-        let td_n2Found = trSearch.insertCell()
-        let td_mediaFound = trSearch.insertCell()
-        
-        td_nmFound.innerText = this.alunos[i].nm
-        td_nameFound.innerText = this.alunos[i].name
-        td_lastNameFound.innerText = this.alunos[i].lastName
-        td_classFound.innerText = this.alunos[i].turma
-        td_n1Found.innerText = this.alunos[i].n1
-        td_n2Found.innerText = this.alunos[i].n2
-        td_mediaFound.innerText = this.alunos[i].media()
-        controller = true;
-        document.getElementById("searchNM").value=''
-      }if(controller == false){
-        alert("NM não encontrado!")
-        document.getElementById("searchNM").value=''
-      }
+function searchStudent(searchNM, controller){
+  let tbodySearch = document.getElementById("tbodySearch")
+  tbodySearch.innerText = ''
+
+  for(let i = 0; i < alunos.length; i++){
+    if(searchNM == alunos[i].nm){
+      let trSearch = tbodySearch.insertRow();
+
+      let td_nmFound = trSearch.insertCell()
+      let td_nameFound = trSearch.insertCell()
+      let td_lastNameFound = trSearch.insertCell()
+      let td_classFound = trSearch.insertCell()
+      let td_n1Found = trSearch.insertCell()
+      let td_n2Found = trSearch.insertCell()
+      let td_mediaFound = trSearch.insertCell()
+      
+      td_nmFound.innerText = this.alunos[i].nm
+      td_nameFound.innerText = this.alunos[i].name
+      td_lastNameFound.innerText = this.alunos[i].lastName
+      td_classFound.innerText = this.alunos[i].turma
+      td_n1Found.innerText = this.alunos[i].n1
+      td_n2Found.innerText = this.alunos[i].n2
+      td_mediaFound.innerText = this.alunos[i].media()
+      controller = true;
+      document.getElementById("searchNM").value=''
+    }
+    if(controller == false){
+      alert("NM não encontrado!")
+      document.getElementById("searchNM").value=''
     }
   }
 }
