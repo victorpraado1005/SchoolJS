@@ -51,7 +51,10 @@
               aria-label="Close"
             ></button>
           </div>
-          <div class="modal-body"></div>
+          <div class="modal-body">
+            <p>Digite o NM do aluno que deseja apagar:</p>
+            <input type="number" name="deleteNM" id="deleteNM" />
+          </div>
           <div class="modal-footer">
             <button
               type="button"
@@ -60,7 +63,14 @@
             >
               Fechar
             </button>
-            <button type="button" class="btn btn-danger">Apagar Aluno</button>
+            <button
+              type="button"
+              class="btn btn-danger"
+              onclick="deleteStudent()"
+              aria-label="Close"
+            >
+              Apagar Aluno
+            </button>
           </div>
         </div>
       </div>

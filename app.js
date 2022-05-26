@@ -134,13 +134,9 @@ async function getStudentSearch(){
   }
 
   function getStudentByNM(nm){
-    let tbodySearch = document.getElementById("tbodySearch")
-    tbodySearch.innerText = ''
     let student = alunos.filter((aluno) => aluno.nm == nm)
-    // console.log(student[0].nm)
     if(student.length == 0){
       alert("NM não encontrado!")
-      document.getElementById("searchNM").value=''
     }else{
       return student
     } 
@@ -181,4 +177,21 @@ function clearInput(){
     document.getElementById('lastNameStudent').value='';
     document.getElementById('n1').value='';
     document.getElementById('n2').value='';
+}
+
+function deleteStudent(){
+  let deleteNM = document.getElementById('deleteNM').value
+  let student = getStudentByNM(deleteNM)
+
+  if(student == undefined){
+    console.log("undefined")
+  }else{
+    for (let i = 0; i < alunos.length; i++){
+      if(alunos[i].nm == student[0].nm){
+        alunos.splice(i, 1)
+        alert('Aluno excluído com sucesso!')
+      }
+    }
+  }
+  
 }
