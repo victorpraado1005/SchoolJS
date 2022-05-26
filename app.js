@@ -40,16 +40,23 @@ function verificaDados(){
   var n2 = document.getElementById('n2').value
   n1 = parseFloat(n1);
   n2 = parseFloat(n2);
-  var nm = setNM()
-  var turma = getClass()  
-  var lengthClass = verifyClassSize(turma)
-    if(lengthClass == true){
-      var a = new aluno(nm, nome, sobrenome, n1, n2, turma)
-      clearInput()
-      return alunos.push(a)
-    }else{
-      alert("A Turma " + turma + " está lotada, favor selecionar outra turma!")
-    } 
+  if(n1 <= 10 && n2 <= 10){
+    var nm = setNM()
+    var turma = getClass()  
+    var lengthClass = verifyClassSize(turma)
+      if(lengthClass == true){
+        var a = new aluno(nm, nome, sobrenome, n1, n2, turma)
+        clearInput()
+        return alunos.push(a)
+      }else{
+        alert("A Turma " + turma + " está lotada, favor selecionar outra turma!")
+      } 
+  }else{
+    alert("As notas não devem ser maiores que 10!")
+    document.getElementById("n1").value=''
+    document.getElementById("n2").value=''
+  }
+  
 }
 
 function getClass(){
@@ -82,7 +89,7 @@ function verifyClassSize(turma){
 }
 
 function showStudent(){
-  let tbody = document.getElementById('tbody')
+  let tbody = document.getElementById('tbodyShow')
   tbody.innerText = '';
   var select = document.getElementById('turmaVisualizar')
   var turmaVisualizar = select.options[select.selectedIndex].value
@@ -109,54 +116,58 @@ function showStudent(){
 }
 
 function hideStudents(){
-  let tbody = document.getElementById('tbody')
+  let tbody = document.getElementById('tbodyShow')
   tbody.innerText = '';
 }
 
-const timeout = (duration) => {
-  return new Promise((resolve, reject) => {
-    setTimeout(resolve, duration)
-  })
-}
-
-async function getStudent(){
+async function getStudentSearch(){
   let tbodySearch = document.getElementById("tbodySearch")
   tbodySearch.innerText = ''
   var searchNM = document.getElementById("searchNM").value
-  var controller = false;
   if (alunos.length == 0){
     alert("Não existem alunos cadastrados!")
   }else{
-    for(let i = 0; i < alunos.length; i++){
-      if(searchNM == alunos[i].nm){
-        let trSearch = tbodySearch.insertRow();
-  
-        let td_nmFound = trSearch.insertCell()
-        let td_nameFound = trSearch.insertCell()
-        let td_lastNameFound = trSearch.insertCell()
-        let td_classFound = trSearch.insertCell()
-        let td_n1Found = trSearch.insertCell()
-        let td_n2Found = trSearch.insertCell()
-        let td_mediaFound = trSearch.insertCell()
-        
-        td_nmFound.innerText = this.alunos[i].nm
-        td_nameFound.innerText = this.alunos[i].name
-        td_lastNameFound.innerText = this.alunos[i].lastName
-        td_classFound.innerText = this.alunos[i].turma
-        td_n1Found.innerText = this.alunos[i].n1
-        td_n2Found.innerText = this.alunos[i].n2
-        td_mediaFound.innerText = this.alunos[i].media()
-        controller = true;
-        document.getElementById("searchNM").value=''
-      }
+    let student = getStudentByNM(searchNM)
+    console.log(student)
+    showStudentByTag(tbodySearch, student)
     }
-    timeout(100)
-      .then(function() {
-        if(controller == false){
-          alert("NM não encontrado!")
-          document.getElementById("searchNM").value=''
-        }
-      })
+  }
+
+  function getStudentByNM(nm){
+    let tbodySearch = document.getElementById("tbodySearch")
+    tbodySearch.innerText = ''
+    let student = alunos.filter((aluno) => aluno.nm == nm)
+    // console.log(student[0].nm)
+    if(student.length == 0){
+      alert("NM não encontrado!")
+      document.getElementById("searchNM").value=''
+    }else{
+      return student
+    } 
+  }
+
+  function showStudentByTag(tbody, student){
+    if(student == undefined){
+      console.log("undefined")
+    }else{
+      let tr = tbody.insertRow();
+  
+      let td_nmFound = tr.insertCell()
+      let td_nameFound = tr.insertCell()
+      let td_lastNameFound = tr.insertCell()
+      let td_classFound = tr.insertCell()
+      let td_n1Found = tr.insertCell()
+      let td_n2Found = tr.insertCell()
+      let td_mediaFound = tr.insertCell()
+      
+      td_nmFound.innerText = student[0].nm
+      td_nameFound.innerText = student[0].name
+      td_lastNameFound.innerText = student[0].lastName
+      td_classFound.innerText = student[0].turma
+      td_n1Found.innerText = student[0].n1
+      td_n2Found.innerText = student[0].n2
+      td_mediaFound.innerText = student[0].media()
+      document.getElementById("searchNM").value=''
     }
   }
 
