@@ -1,5 +1,25 @@
 var alunos = []
 
+var inputNome = document.querySelector("#nameStudent");
+
+nameStudent.addEventListener("keypress", function(e) {
+    var keyCode = (e.keyCode ? e.keyCode : e.which);
+  
+  if (keyCode > 47 && keyCode < 58) {
+    e.preventDefault();
+  }
+});
+
+var inputLastName = document.querySelector("#lastNameStudent");
+
+lastNameStudent.addEventListener("keypress", function(e) {
+    var keyCode = (e.keyCode ? e.keyCode : e.which);
+  
+  if (keyCode > 47 && keyCode < 58) {
+    e.preventDefault();
+  }
+});
+
 function aluno(nm, nome, sobrenome, n1, n2, turma){
   this.nm = nm;
   this.name = nome;
@@ -131,21 +151,14 @@ async function getStudent(){
       }
     }
     timeout(100)
-  .then(function() {
-    if(controller == false){
-      alert("NM não encontrado!")
-      document.getElementById("searchNM").value=''
+      .then(function() {
+        if(controller == false){
+          alert("NM não encontrado!")
+          document.getElementById("searchNM").value=''
+        }
+      })
     }
-  })
-    }
-    
   }
-
-function searchStudent(searchNM, controller){
-  
-
-  
-}
 
 function clearSearch(){
   let x = document.getElementById('tbodySearch')
