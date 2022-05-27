@@ -1,4 +1,5 @@
 var alunos = []
+var lastID = 1
 
 var inputNome = document.querySelector("#nameStudent");
 
@@ -65,11 +66,7 @@ function getClass(){
 }
 
 function setNM(){
-  nm = 1;
-  for (let i = 0; i < alunos.length; i++){
-    nm = nm + 1;
-  }
-  return nm;
+  return lastID++
 }
 
 function verifyClassSize(turma){
@@ -182,6 +179,8 @@ function clearInput(){
 function deleteStudent(){
   let deleteNM = document.getElementById('deleteNM').value
   let student = getStudentByNM(deleteNM)
+  var deleteStudent = new bootstrap.Modal(document.getElementById('apagarAluno'))
+  var modalMessageSuccess = new bootstrap.Modal(document.getElementById('messageSuccess'))
 
   if(student == undefined){
     console.log("undefined")
@@ -189,7 +188,10 @@ function deleteStudent(){
     for (let i = 0; i < alunos.length; i++){
       if(alunos[i].nm == student[0].nm){
         alunos.splice(i, 1)
-        alert('Aluno excluído com sucesso!')
+        document.getElementById('deleteNM').value=''                
+        showStudent()
+        // deleteStudent.hide()
+        modalMessageSuccess.show()
       }
     }
   }

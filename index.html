@@ -68,8 +68,31 @@
               class="btn btn-danger"
               onclick="deleteStudent()"
               aria-label="Close"
+              data-bs-dismiss="modal"
             >
               Apagar Aluno
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal fade" id="messageSuccess">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header d-flex justify-content-center">
+            <h5 class="modal-title" id="apagarAluno">
+              Aluno apagado com sucesso!
+            </h5>
+          </div>
+
+          <div class="modal-footer d-flex justify-content-center">
+            <button
+              type="button"
+              class="btn btn-success"
+              data-bs-dismiss="modal"
+            >
+              Fechar
             </button>
           </div>
         </div>
