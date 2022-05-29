@@ -1,0 +1,167 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Escola</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+      crossorigin="anonymous"
+    />
+  </head>
+  <body>
+    <div>
+      <input type="text" id="nameStudent" placeholder="name" />
+      <input type="text" id="lastNameStudent" placeholder="last name" /><br />
+      <input type="number" id="n1" placeholder="n1" />
+      <input type="number" id="n2" placeholder="n2" />
+      <br />
+      <br />
+      <select name="turma" id="turma">
+        <option value="A">Turma A</option>
+        <option value="B">Turma B</option>
+        <option value="C">Turma C</option>
+        <option value="D">Turma D</option></select
+      ><br /><br />
+      <button class="btn btn-success" onclick="verificaDados()">
+        Criar aluno
+      </button>
+    </div>
+    <br />
+    <button
+      type="button"
+      class="btn btn-danger"
+      data-bs-toggle="modal"
+      data-bs-target="#apagarAluno"
+    >
+      Apagar Aluno
+    </button>
+
+    <div class="modal fade" id="apagarAluno">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="apagarAluno">Apagar Aluno</h5>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body">
+            <p>Digite o NM do aluno que deseja apagar:</p>
+            <input type="number" name="deleteNM" id="deleteNM" />
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-bs-dismiss="modal"
+            >
+              Fechar
+            </button>
+            <button
+              type="button"
+              class="btn btn-danger"
+              onclick="deleteStudent()"
+              aria-label="Close"
+              data-bs-dismiss="modal"
+            >
+              Apagar Aluno
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="modal fade" id="messageSuccess">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header d-flex justify-content-center">
+            <h5 class="modal-title" id="apagarAluno">
+              Aluno apagado com sucesso!
+            </h5>
+          </div>
+
+          <div class="modal-footer d-flex justify-content-center">
+            <button
+              type="button"
+              class="btn btn-success"
+              data-bs-dismiss="modal"
+            >
+              Fechar
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <br />
+    <div>
+      <br />
+      <span>Visualizar alunos da turma: </span>
+      <select name="turmaVisualizar" id="turmaVisualizar">
+        <option value="A">Turma A</option>
+        <option value="B">Turma B</option>
+        <option value="C">Turma C</option>
+        <option value="D">Turma D</option>
+      </select>
+      <button class="btn btn-primary" onclick="showStudent()">
+        Mostrar alunos
+      </button>
+      <button class="btn btn-warning" onclick="hideStudents()">
+        Esconder alunos
+      </button>
+      <br /><br />
+      <table>
+        <thead>
+          <th>NM</th>
+          <th>Nome</th>
+          <th>Sobrenome</th>
+          <th>Nota 1</th>
+          <th>Nota 2</th>
+          <th>Média</th>
+        </thead>
+        <tbody id="tbodyShow"></tbody>
+      </table>
+    </div>
+
+    <div>
+      <br /><br /><br /><br />
+      <span>Insira o NM que você deseja buscar:</span><br />
+      <input type="text" id="searchNM" placeholder="Digite o NM..." />
+      <button class="btn btn-primary" onclick="getStudentSearch()">
+        Buscar
+      </button>
+      <button class="btn btn-warning" onclick="clearSearch()">
+        Limpar Busca
+      </button>
+    </div>
+
+    <div>
+      <br />
+      <table>
+        <thead>
+          <th>NM</th>
+          <th>Nome</th>
+          <th>Sobrenome</th>
+          <th>Turma</th>
+          <th>Nota 1</th>
+          <th>Nota 2</th>
+          <th>Média</th>
+        </thead>
+        <tbody id="tbodySearch"></tbody>
+      </table>
+    </div>
+
+    <script src="app.js"></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>
