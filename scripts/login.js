@@ -11,13 +11,20 @@ firebase.initializeApp(firebaseConfig)
 const auth = firebase.auth()
 
 function createAccount(){
+  //pegando o value dos campos para adicionar na função de criar usuário
   var email = document.getElementById('createEmail').value
   var password = document.getElementById('createPassword').value
   var confirmPassword = document.getElementById('confirmPassword').value
 
-  var emailArea = document.querySelector("#createEmail")
-  var passwordArea = document.querySelector("#createPassword")
-  var confirmPasswordArea = document.querySelector("#confirmPassword")
+  //pegando o campo sem o value para adicionar uma class
+  var emailArea = document.getElementById('createEmail')
+  var passwordArea = document.getElementById('createPassword')
+  var confirmPasswordArea = document.getElementById('confirmPassword')
+  
+  //identificando área do alerta de criação de conta
+  var alertCreateAccount = document.getElementById("alertCreateAccount")
+
+  var modalCreateAccount = document.getElementById("modalContentCreateAccount")
 
   if(email == '' && password == '' && confirmPassword == ''){
     alert("Preencha os campos obrigatórios.")
@@ -41,14 +48,35 @@ function createAccount(){
     confirmPasswordArea.classList.add("no__data")     
   }
   else{
-    auth.createUserWithEmailAndPassword(email, password)
+    var auxPassword = password.localeCompare(confirmPassword)
+    if(auxPassword == 0){
+      auth.createUserWithEmailAndPassword(email, password)
       .then(userC=>{
         var user = userC.user
         console.log(user)
+        $("#createAccount").modal("hide")  
+        alertCreateAccount.classList.remove("hide")
+        resetFieldsModalCreateAccount()        
       }).catch(error=>{
         console.log(error)
-    })
+    })            
+    }else{
+      alert("As senhas não se coincidem!")
+    }    
   }  
+}
+
+function resetFieldsModalCreateAccount(){
+  var emailArea = document.getElementById('createEmail')
+  var passwordArea = document.getElementById('createPassword')
+  var confirmPasswordArea = document.getElementById('confirmPassword')
+
+  document.getElementById('createEmail').value=''
+  document.getElementById('createPassword').value=''
+  document.getElementById('confirmPassword').value=''
+  emailArea.classList.remove("no__data")
+  passwordArea.classList.remove("no__data")
+  confirmPasswordArea.classList.remove("no__data")
 }
 
 function login(){

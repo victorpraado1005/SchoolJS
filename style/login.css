@@ -23,8 +23,8 @@ p {
 
 .login__card {
   background-color: #fff;
-  width: 400px;
-  height: 350px;
+  width: 500px;
+  height: 400px;
   border-radius: 10px;
   display: flex;
   flex-direction: column;
@@ -119,4 +119,17 @@ p {
 .no__data {
   border: 1px solid red;
   border-radius: 5px;
+}
+
+.alert__createAccount {
+  width: 60%;
+  height: 50px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 14px;
+}
+
+.hide {
+  display: none;
 }

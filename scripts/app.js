@@ -179,7 +179,6 @@ function clearInput(){
 function deleteStudent(){
   let deleteNM = document.getElementById('deleteNM').value
   let student = getStudentByNM(deleteNM)
-  var deleteStudent = new bootstrap.Modal(document.getElementById('apagarAluno'))
   var modalMessageSuccess = new bootstrap.Modal(document.getElementById('messageSuccess'))
 
   if(student == undefined){
@@ -190,7 +189,6 @@ function deleteStudent(){
         alunos.splice(i, 1)
         document.getElementById('deleteNM').value=''                
         showStudent()
-        // deleteStudent.hide()
         modalMessageSuccess.show()
       }
     }

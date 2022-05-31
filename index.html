@@ -11,11 +11,25 @@
       crossorigin="anonymous"
     />
     <link rel="stylesheet" href="style/login.css" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   </head>
   <body>
     <div class="login__container">
       <p>Bem vindo à SchoolJS</p>
       <div class="login__card">
+        <div
+          id="alertCreateAccount"
+          class="alert alert-success alert__createAccount hide"
+          role="alert"
+        >
+          Usuário Cadastrado com sucesso.
+          <button
+            type="button"
+            class="btn-close"
+            data-bs-dismiss="alert"
+            aria-label="Close"
+          ></button>
+        </div>
         <div class="login__data">
           <h1>Faça seu Login:</h1>
           <input type="email" id="email" placeholder="Digite o seu e-mail" />
