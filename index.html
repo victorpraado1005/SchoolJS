@@ -57,26 +57,36 @@
           <div class="modal-body modal__b__createAccount">
             <span>E-mail:</span>
             <div>
-              <input type="email" name="createEmail" id="createEmail" />
+              <input
+                class=""
+                type="email"
+                name="createEmail"
+                id="createEmail"
+                placeholder="Digite o seu e-mail"
+              />
             </div>
             <span>Senha:</span>
             <div>
               <input
+                class=""
                 type="password"
                 name="createPassword"
                 id="createPassword"
+                placeholder="Senha"
               />
             </div>
             <span>Confirmar Senha:</span>
             <div>
               <input
+                class=""
                 type="password"
                 name="confirmPassword"
                 id="confirmPassword"
+                placeholder="Confirme sua Senha"
               />
             </div>
           </div>
-          <div class="modal-footer modal__f__createAccount">
+          <div class="modal-footer d-flex justify-content-center">
             <button
               type="button"
               class="btn btn-secondary"
@@ -88,8 +98,6 @@
               type="button"
               class="btn btn-success"
               onclick="createAccount()"
-              aria-label="Close"
-              data-bs-dismiss="modal"
             >
               Criar Conta
             </button>

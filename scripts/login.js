@@ -10,17 +10,45 @@ const firebaseConfig = {
 firebase.initializeApp(firebaseConfig)
 const auth = firebase.auth()
 
-function createAccount(email, password){
+function createAccount(){
   var email = document.getElementById('createEmail').value
   var password = document.getElementById('createPassword').value
+  var confirmPassword = document.getElementById('confirmPassword').value
 
-  auth.createUserWithEmailAndPassword(email, password)
-  .then(userC=>{
-    var user = userC.user
-    console.log(user)
-  }).catch(error=>{
-    console.log(error)
-  })
+  var emailArea = document.querySelector("#createEmail")
+  var passwordArea = document.querySelector("#createPassword")
+  var confirmPasswordArea = document.querySelector("#confirmPassword")
+
+  if(email == '' && password == '' && confirmPassword == ''){
+    alert("Preencha os campos obrigatórios.")
+    emailArea.classList.add("no__data")
+    passwordArea.classList.add("no__data")
+    confirmPasswordArea.classList.add("no__data")
+  }else if(email == ''){
+    alert("Preencha o campo de E-mail!")
+    emailArea.classList.add("no__data")
+    passwordArea.classList.remove("no__data")
+    confirmPasswordArea.classList.remove("no__data")
+  }else if(password == ''){
+    alert("Preencha o campo de Senha!")    
+    emailArea.classList.remove("no__data")
+    passwordArea.classList.add("no__data")
+    confirmPasswordArea.classList.remove("no__data")
+  }else if(confirmPassword == ''){
+    alert("Preencha o campo de Confirmar Senha!")    
+    emailArea.classList.remove("no__data")
+    passwordArea.classList.remove("no__data")
+    confirmPasswordArea.classList.add("no__data")     
+  }
+  else{
+    auth.createUserWithEmailAndPassword(email, password)
+      .then(userC=>{
+        var user = userC.user
+        console.log(user)
+      }).catch(error=>{
+        console.log(error)
+    })
+  }  
 }
 
 function login(){

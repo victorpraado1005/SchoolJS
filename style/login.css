@@ -108,7 +108,15 @@ p {
 .modal__b__createAccount input {
   margin-top: 5px;
   margin-bottom: 20px;
+  width: 40%;
 }
 
-.modal__f__createAccount {
+.modal input {
+  font-size: 14px;
+  padding: 3px;
+}
+
+.no__data {
+  border: 1px solid red;
+  border-radius: 5px;
 }
