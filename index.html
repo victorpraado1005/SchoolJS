@@ -21,9 +21,20 @@
           <input type="email" id="email" placeholder="Digite o seu e-mail" />
           <input type="password" id="password" placeholder="Senha" />
           <button class="btn btn-success" onclick="login()">Login</button>
-          <span>Não tem uma conta? <a href="#">Crie agora!</a></span>
+        </div>
+        <div class="login__createAccount">
+          <span>Não tem uma conta?</span>
+          <button
+            type="button"
+            class="btn btn-primary"
+            data-bs-toggle="modal"
+            data-bs-target="#createAccount"
+          >
+            Criar Agora!
+          </button>
         </div>
       </div>
+
       <div class="testeLogin">
         <span>Usário para acessar a plataforma:</span>
         <span>E-mail: prado.victor1005@gmail.com</span>
@@ -31,9 +42,70 @@
       </div>
     </div>
 
+    <div class="modal fade" id="createAccount">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title">Criar Conta:</h5>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body modal__b__createAccount">
+            <span>E-mail:</span>
+            <div>
+              <input type="email" name="createEmail" id="createEmail" />
+            </div>
+            <span>Senha:</span>
+            <div>
+              <input
+                type="password"
+                name="createPassword"
+                id="createPassword"
+              />
+            </div>
+            <span>Confirmar Senha:</span>
+            <div>
+              <input
+                type="password"
+                name="confirmPassword"
+                id="confirmPassword"
+              />
+            </div>
+          </div>
+          <div class="modal-footer modal__f__createAccount">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-bs-dismiss="modal"
+            >
+              Fechar
+            </button>
+            <button
+              type="button"
+              class="btn btn-success"
+              onclick="createAccount()"
+              aria-label="Close"
+              data-bs-dismiss="modal"
+            >
+              Criar Conta
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
     <script src="scripts/login.js"></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+      crossorigin="anonymous"
+    ></script>
   </body>
 </html>

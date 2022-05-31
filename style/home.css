@@ -1,0 +1,79 @@
+body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Open Sans, Helvetica, Arial, sans-serif;
+}
+
+.header__container {
+  background-color: #3498db;
+  height: 50px;
+  color: white;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  margin-bottom: 30px;
+}
+
+.grid_container {
+  border: 2px solid #3498db;
+  border-radius: 20px;
+  padding: 40px;
+  display: grid;
+  grid-template-columns: auto auto;
+  gap: 60px;
+}
+
+.grid_container p {
+  margin-bottom: 30px;
+}
+
+p {
+  text-align: center;
+  font-size: 25px;
+}
+
+.createStudent {
+  /* border: 1px solid; */
+  /* margin-bottom: 30px; */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.createStudent__grid {
+  display: grid;
+  grid-template-columns: auto auto;
+  gap: 10px;
+  margin-bottom: 15px;
+}
+
+.createStudent button {
+  margin-top: 15px;
+}
+
+.createStudent p {
+  text-align: center;
+  font-size: 25px;
+}
+
+.showStudent__container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 30px 0;
+}
+
+.showStudent__container span {
+  font-size: 20px;
+}
+
+.deleteStudent {
+  /* border: 1px solid; */
+  text-align: center;
+}
+
+.deleteStudent button {
+  margin-top: 30px;
+}

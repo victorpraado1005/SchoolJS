@@ -27,6 +27,7 @@ p {
   height: 350px;
   border-radius: 10px;
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
 }
@@ -84,4 +85,30 @@ p {
   margin-top: 4px;
   margin-bottom: 4px;
   font-size: 14px;
+}
+
+.login__createAccount {
+  margin-top: 30px;
+}
+
+.login__createAccount .btn {
+  margin-left: 10px;
+  width: 92px;
+  height: 30px;
+  font-size: 12px;
+  text-align: center;
+  align-items: center;
+}
+
+.modal__b__createAccount {
+  display: flex;
+  flex-direction: column;
+}
+
+.modal__b__createAccount input {
+  margin-top: 5px;
+  margin-bottom: 20px;
+}
+
+.modal__f__createAccount {
 }
