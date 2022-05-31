@@ -12,16 +12,21 @@
     />
     <link rel="stylesheet" href="style/login.css" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script
+      src="https://kit.fontawesome.com/f0d7b9260e.js"
+      crossorigin="anonymous"
+    ></script>
   </head>
   <body>
     <div class="login__container">
-      <p>Bem vindo à SchoolJS</p>
+      <p>Bem vindo à SchoolJS <i class="fa-solid fa-book"></i></p>
       <div class="login__card">
         <div
           id="alertCreateAccount"
           class="alert alert-success alert__createAccount hide"
           role="alert"
         >
+          <i class="fa-solid fa-check"></i>
           Usuário Cadastrado com sucesso.
           <button
             type="button"
@@ -32,8 +37,14 @@
         </div>
         <div class="login__data">
           <h1>Faça seu Login:</h1>
-          <input type="email" id="email" placeholder="Digite o seu e-mail" />
-          <input type="password" id="password" placeholder="Senha" />
+          <div class="">
+            <i class="fa-solid fa-user margin-right__login"></i>
+            <input type="email" id="email" placeholder="Digite o seu e-mail" />
+          </div>
+          <div>
+            <i class="fa-solid fa-lock margin-right__login"></i>
+            <input type="password" id="password" placeholder="Senha" />
+          </div>
           <button class="btn btn-success" onclick="login()">Login</button>
         </div>
         <div class="login__createAccount">

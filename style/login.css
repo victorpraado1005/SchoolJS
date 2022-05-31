@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Schoolbell&display=swap');
+
 body {
   margin: 0;
   padding: 0;
@@ -19,6 +21,11 @@ p {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+}
+
+.login__container p {
+  font-family: 'Schoolbell', cursive;
+  font-size: 45px;
 }
 
 .login__card {
@@ -91,6 +98,10 @@ p {
   margin-top: 30px;
 }
 
+.login__createAccount span {
+  font-size: 12px;
+}
+
 .login__createAccount .btn {
   margin-left: 10px;
   width: 92px;
@@ -132,4 +143,8 @@ p {
 
 .hide {
   display: none;
+}
+
+.margin-right__login {
+  margin-right: 8px;
 }

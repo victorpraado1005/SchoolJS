@@ -11,16 +11,22 @@
       crossorigin="anonymous"
     />
     <link rel="stylesheet" href="../style/home.css" />
+    <script
+      src="https://kit.fontawesome.com/f0d7b9260e.js"
+      crossorigin="anonymous"
+    ></script>
   </head>
   <body>
     <header class="header__container">
-      <h3>SchoolJS</h3>
+      <h3>SchoolJS <i class="fa-solid fa-book"></i></h3>
       <button class="btn btn-danger" onclick="logout()">Sair</button>
     </header>
-    <p>Bem-Vindo à SchoolJS</p>
+    <div class="title__content">
+      <p>Bem-Vindo à SchoolJS <i class="fa-solid fa-book"></i></p>
+    </div>
     <div class="grid_container container">
       <div class="createStudent">
-        <p>Criar Aluno:</p>
+        <p><i class="fa-solid fa-user-plus"></i> Criar Aluno:</p>
         <div class="createStudent__grid">
           <input type="text" id="nameStudent" placeholder="Nome" />
           <input type="text" id="lastNameStudent" placeholder="Sobrenome" />
@@ -40,7 +46,7 @@
       </div>
 
       <div class="showStudent">
-        <p>Visualizar Alunos:</p>
+        <p><i class="fa-solid fa-eye"></i> Visualizar Alunos:</p>
         <div class="showStudent__container">
           <span>Visualizar alunos da turma: </span>
           <select name="turmaVisualizar" id="turmaVisualizar">
@@ -73,7 +79,7 @@
       </div>
 
       <div class="deleteStudent">
-        <p>Apagar Aluno:</p>
+        <p><i class="fa-solid fa-trash-can"></i> Apagar Aluno:</p>
         <button
           type="button"
           class="btn btn-danger"
@@ -145,7 +151,7 @@
       </div>
 
       <div class="searchStudent">
-        <p>Buscar Aluno:</p>
+        <p><i class="fa-solid fa-magnifying-glass"></i> Buscar Aluno:</p>
         <div class="showStudent__container">
           <span>Insira o NM que você deseja buscar:</span>
           <input type="text" id="searchNM" placeholder="Digite o NM..." />
