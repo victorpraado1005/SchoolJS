@@ -1,6 +1,16 @@
 var alunos = []
 var lastID = 1
 
+const db = firebase.firestore()
+
+//atualização em tempo real do DB para verificar o lastID
+db.collection("SchoolJS").where("nm", ">", 0).onSnapshot(snapshot=>{
+      snapshot.forEach(doc=>{
+      let aluno = doc.data();
+      lastID = aluno.nm + 1
+  })
+})
+
 var inputNome = document.querySelector("#nameStudent");
 
 nameStudent.addEventListener("keypress", function(e) {
@@ -47,6 +57,18 @@ function verificaDados(){
     var lengthClass = verifyClassSize(turma)
       if(lengthClass == true){
         var a = new aluno(nm, nome, sobrenome, n1, n2, turma)
+        db.collection('SchoolJS').add({
+          name: nome,
+          lastName: sobrenome,
+          nota1: n1,
+          nota2: n2,
+          nm: nm,
+          turma: turma,
+        }).then(doc=>{
+          console.log("Documento inserido com sucesso: ", doc)
+        }).catch(err=>{
+          console.log(err)
+        })
         clearInput()
         return alunos.push(a)
       }else{
@@ -91,8 +113,10 @@ function showStudent(){
   var select = document.getElementById('turmaVisualizar')
   var turmaVisualizar = select.options[select.selectedIndex].value
 
-  for (let i = 0; i < alunos.length; i++) {
-    if(alunos[i].turma == turmaVisualizar){
+  db.collection("SchoolJS").where("turma", "==", turmaVisualizar).get()
+  .then(snapshot=>{
+    snapshot.forEach(docTeste=>{
+      let student = docTeste.data()
       let tr = tbody.insertRow();
 
       let td_nm = tr.insertCell();
@@ -102,14 +126,14 @@ function showStudent(){
       let td_n2 = tr.insertCell();
       let td_media = tr.insertCell();
 
-      td_nm.innerText = this.alunos[i].nm;
-      td_nome.innerText = this.alunos[i].name;
-      td_sobrenome.innerText = this.alunos[i].lastName;
-      td_n1.innerText = this.alunos[i].n1;
-      td_n2.innerText = this.alunos[i].n2;
-      td_media.innerText = this.alunos[i].media();
-    }
-  }
+      td_nm.innerText = student.nm;
+      td_nome.innerText = student.name;
+      td_sobrenome.innerText = student.lastName;
+      td_n1.innerText = student.nota1;
+      td_n2.innerText = student.nota2;
+      // td_media.innerText = this.alunoTeste.media();
+    })
+  })
 }
 
 function hideStudents(){
@@ -121,14 +145,36 @@ async function getStudentSearch(){
   let tbodySearch = document.getElementById("tbodySearch")
   tbodySearch.innerText = ''
   var searchNM = document.getElementById("searchNM").value
-  if (alunos.length == 0){
-    alert("Não existem alunos cadastrados!")
-  }else{
-    let student = getStudentByNM(searchNM)
-    console.log(student)
-    showStudentByTag(tbodySearch, student)
+  searchNM = parseFloat(searchNM);
+  
+  db.collection("SchoolJS").where("nm", "==", searchNM).get()
+    .then(snapshot=>{
+      snapshot.forEach(doc=>{
+        let student = doc.data()
+        let tr = tbodySearch.insertRow();
+
+        let td_nm = tr.insertCell();
+        let td_nome = tr.insertCell();
+        let td_sobrenome = tr.insertCell();
+        let td_turma = tr.insertCell();
+        let td_n1 = tr.insertCell();
+        let td_n2 = tr.insertCell();
+        let td_media = tr.insertCell();
+
+        td_nm.innerText = student.nm;
+        td_nome.innerText = student.name;        
+        td_sobrenome.innerText = student.lastName;
+        td_turma.innerText = student.turma;
+        td_n1.innerText = student.nota1;
+        td_n2.innerText = student.nota2;
+        // td_media.innerText = this.alunoTeste.media();
+      })
+    })
+    // let student = getStudentByNM(searchNM)
+    // console.log(student)
+    // showStudentByTag(tbodySearch, student)
     }
-  }
+  
 
   function getStudentByNM(nm){
     let student = alunos.filter((aluno) => aluno.nm == nm)
@@ -144,7 +190,6 @@ async function getStudentSearch(){
       console.log("undefined")
     }else{
       let tr = tbody.insertRow();
-  
       let td_nmFound = tr.insertCell()
       let td_nameFound = tr.insertCell()
       let td_lastNameFound = tr.insertCell()
