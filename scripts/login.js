@@ -97,7 +97,7 @@ function login(){
 function logout(){
   auth.signOut().then(()=>{
     console.log("Usuário deslogado!!")
-    window.location.href = "index.html";
+    window.location.href = "../index.html";
   }).catch(error=>{
     console.log(error)
   })
