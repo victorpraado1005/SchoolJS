@@ -55,6 +55,7 @@ function verificaDados(){
     var nm = setNM()
     var turma = getClass()  
     var lengthClass = verifyClassSize(turma)
+    console.log(lengthClass)
       if(lengthClass == true){
         var a = new aluno(nm, nome, sobrenome, n1, n2, turma)
         db.collection('SchoolJS').add({
@@ -92,19 +93,26 @@ function setNM(){
 }
 
 function verifyClassSize(turma){
-  var counter = 0;
-  for (let i = 0; i < alunos.length; i++){
-    if(turma == alunos[i].turma){        
-      counter = counter + 1;
+  let classSize = 0
+  db.collection("SchoolJS").where("turma", "==", turma).get()
+  .then(snapshot=>{
+    snapshot.forEach(doc=>{
+      let student = doc.data()
+      console.log(student.name)
+      classSize = classSize + 1 
+    })    
+  })
+
+  setTimeout(()=>{
+    console.log(classSize)
+    if(classSize <= 10){
+      console.log("Entrou!")
+      return true
+    }else{
+      console.log("Entrou com false!")
+      return false
     }
-  }
-  if(counter < 10){
-    //true para quando tem espaço na turma
-    return true
-  }else{
-    //false para quando não tem espaço na turma
-    return false
-  }
+  },1000)
 }
 
 function showStudent(){
@@ -171,8 +179,7 @@ async function getStudentSearch(){
       })
     })
     // let student = getStudentByNM(searchNM)
-    // console.log(student)
-    // showStudentByTag(tbodySearch, student)
+    // console.log(student)    
     }
   
 
@@ -209,6 +216,35 @@ async function getStudentSearch(){
     }
   }
 
+  function deleteStudent(){
+    let deleteNM = document.getElementById('deleteNM').value
+    deleteNM = parseFloat(deleteNM)
+    var modalMessageSuccess = new bootstrap.Modal(document.getElementById('messageSuccess'))   
+    let studentID = null
+    // get no banco para buscar o id do doc do aluno no firebase
+    db.collection("SchoolJS").where("nm", "==", deleteNM).get()
+    .then(snapshot=>{
+      snapshot.forEach(doc=>{
+        studentID = doc.id                            
+      })
+    })
+    // delete no banco informando o id do doc para exclusão correta
+    setTimeout(()=>{
+      if(studentID == null){
+        alert("Nenhum aluno encontrado com o NM: " + deleteNM)
+        document.getElementById('deleteNM').value=''
+      }else{
+        db.collection("SchoolJS").doc(studentID).delete().then(()=>{
+          showStudent()
+          modalMessageSuccess.show()
+          document.getElementById('deleteNM').value=''
+        }).catch(err=>{
+          console.log("Não foi possível excluir o aluno. ", err)
+        })
+      }
+    }, 400) 
+  }
+
 function clearSearch(){
   let x = document.getElementById('tbodySearch')
   x.innerText = ''
@@ -219,24 +255,4 @@ function clearInput(){
     document.getElementById('lastNameStudent').value='';
     document.getElementById('n1').value='';
     document.getElementById('n2').value='';
-}
-
-function deleteStudent(){
-  let deleteNM = document.getElementById('deleteNM').value
-  let student = getStudentByNM(deleteNM)
-  var modalMessageSuccess = new bootstrap.Modal(document.getElementById('messageSuccess'))
-
-  if(student == undefined){
-    console.log("undefined")
-  }else{
-    for (let i = 0; i < alunos.length; i++){
-      if(alunos[i].nm == student[0].nm){
-        alunos.splice(i, 1)
-        document.getElementById('deleteNM').value=''                
-        showStudent()
-        modalMessageSuccess.show()
-      }
-    }
-  }
-  
 }
