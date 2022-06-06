@@ -44,7 +44,7 @@ function aluno(nm, nome, sobrenome, n1, n2, turma){
   }
 }
 
-function verificaDados(){
+async function verificaDados(){
   var nome = document.getElementById('nameStudent').value
   var sobrenome = document.getElementById('lastNameStudent').value
   var n1 = document.getElementById('n1').value
@@ -54,7 +54,7 @@ function verificaDados(){
   if(n1 <= 10 && n2 <= 10){
     var nm = setNM()
     var turma = getClass()  
-    var lengthClass = verifyClassSize(turma)
+    var lengthClass = await verifyClassSize(turma)
     console.log(lengthClass)
       if(lengthClass == true){
         var a = new aluno(nm, nome, sobrenome, n1, n2, turma)
@@ -92,9 +92,9 @@ function setNM(){
   return lastID++
 }
 
-function verifyClassSize(turma){
+async function verifyClassSize(turma){
   let classSize = 0
-  db.collection("SchoolJS").where("turma", "==", turma).get()
+  await db.collection("SchoolJS").where("turma", "==", turma).get()
   .then(snapshot=>{
     snapshot.forEach(doc=>{
       let student = doc.data()
@@ -102,17 +102,12 @@ function verifyClassSize(turma){
       classSize = classSize + 1 
     })    
   })
-
-  setTimeout(()=>{
-    console.log(classSize)
-    if(classSize <= 10){
-      console.log("Entrou!")
-      return true
-    }else{
-      console.log("Entrou com false!")
-      return false
-    }
-  },1000)
+  console.log(classSize)
+  if(classSize <= 9){
+    return true
+  }else{
+    return false
+  }
 }
 
 function showStudent(){
@@ -120,8 +115,8 @@ function showStudent(){
   tbody.innerText = '';
   var select = document.getElementById('turmaVisualizar')
   var turmaVisualizar = select.options[select.selectedIndex].value
-
-  db.collection("SchoolJS").where("turma", "==", turmaVisualizar).get()
+  
+ db.collection("SchoolJS").where("turma", "==", turmaVisualizar).get()
   .then(snapshot=>{
     snapshot.forEach(docTeste=>{
       let student = docTeste.data()
@@ -142,6 +137,8 @@ function showStudent(){
       // td_media.innerText = this.alunoTeste.media();
     })
   })
+
+  
 }
 
 function hideStudents(){
@@ -154,8 +151,9 @@ async function getStudentSearch(){
   tbodySearch.innerText = ''
   var searchNM = document.getElementById("searchNM").value
   searchNM = parseFloat(searchNM);
+  var aux = false
   
-  db.collection("SchoolJS").where("nm", "==", searchNM).get()
+  await db.collection("SchoolJS").where("nm", "==", searchNM).get()
     .then(snapshot=>{
       snapshot.forEach(doc=>{
         let student = doc.data()
@@ -176,10 +174,15 @@ async function getStudentSearch(){
         td_n1.innerText = student.nota1;
         td_n2.innerText = student.nota2;
         // td_media.innerText = this.alunoTeste.media();
+        aux = true;
       })
     })
     // let student = getStudentByNM(searchNM)
-    // console.log(student)    
+    // console.log(student)  
+    if(aux == false){
+      alert("Não foi encontrado nenhum aluno com o NM: " + searchNM)
+      document.getElementById("searchNM").value=''
+    } 
     }
   
 
@@ -216,33 +219,30 @@ async function getStudentSearch(){
     }
   }
 
-  function deleteStudent(){
+  async function deleteStudent(){
     let deleteNM = document.getElementById('deleteNM').value
     deleteNM = parseFloat(deleteNM)
     var modalMessageSuccess = new bootstrap.Modal(document.getElementById('messageSuccess'))   
     let studentID = null
     // get no banco para buscar o id do doc do aluno no firebase
-    db.collection("SchoolJS").where("nm", "==", deleteNM).get()
+    await db.collection("SchoolJS").where("nm", "==", deleteNM).get()
     .then(snapshot=>{
       snapshot.forEach(doc=>{
         studentID = doc.id                            
       })
     })
-    // delete no banco informando o id do doc para exclusão correta
-    setTimeout(()=>{
-      if(studentID == null){
-        alert("Nenhum aluno encontrado com o NM: " + deleteNM)
+    if(studentID == null){
+      alert("Nenhum aluno encontrado com o NM: " + deleteNM)
+      document.getElementById('deleteNM').value=''
+    }else{
+      db.collection("SchoolJS").doc(studentID).delete().then(()=>{
+        showStudent()
+        modalMessageSuccess.show()
         document.getElementById('deleteNM').value=''
-      }else{
-        db.collection("SchoolJS").doc(studentID).delete().then(()=>{
-          showStudent()
-          modalMessageSuccess.show()
-          document.getElementById('deleteNM').value=''
-        }).catch(err=>{
-          console.log("Não foi possível excluir o aluno. ", err)
-        })
-      }
-    }, 400) 
+      }).catch(err=>{
+        console.log("Não foi possível excluir o aluno. ", err)
+      })
+    }
   }
 
 function clearSearch(){
