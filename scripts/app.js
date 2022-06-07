@@ -31,25 +31,12 @@ lastNameStudent.addEventListener("keypress", function(e) {
   }
 });
 
-function aluno(nm, nome, sobrenome, n1, n2, turma){
-  this.nm = nm;
-  this.name = nome;
-  this.lastName = sobrenome;
-  this.n1 = n1;
-  this.n2 = n2;
-  this.turma = turma;
-  this.media = function(){
-     var resultado = (n1 + n2) / 2;
-     return resultado;
-  }
-}
-
 function getMedia(n1, n2){
   var result = (n1 + n2) / 2
   return result
 }
 
-async function verificaDados(){
+async function createStudent(){
   var nome = document.getElementById('nameStudent').value
   var sobrenome = document.getElementById('lastNameStudent').value
   var n1 = document.getElementById('n1').value
@@ -62,7 +49,6 @@ async function verificaDados(){
     var media = getMedia(n1, n2)
     var lengthClass = await verifyClassSize(turma)
       if(lengthClass == true){
-        var a = new aluno(nm, nome, sobrenome, n1, n2, turma)
         db.collection('SchoolJS').add({
           name: nome,
           lastName: sobrenome,
@@ -140,9 +126,7 @@ function showStudent(){
       td_n2.innerText = student.nota2;
       td_media.innerText = student.media;
     })
-  })
-
-  
+  }) 
 }
 
 function hideStudents(){
@@ -186,45 +170,10 @@ async function getStudentSearch(){
       document.getElementById("searchNM").value=''
     } 
     }
-  
-
-  function getStudentByNM(nm){
-    let student = alunos.filter((aluno) => aluno.nm == nm)
-    if(student.length == 0){
-      alert("NM não encontrado!")
-    }else{
-      return student
-    } 
-  }
-
-  function showStudentByTag(tbody, student){
-    if(student == undefined){
-      console.log("undefined")
-    }else{
-      let tr = tbody.insertRow();
-      let td_nmFound = tr.insertCell()
-      let td_nameFound = tr.insertCell()
-      let td_lastNameFound = tr.insertCell()
-      let td_classFound = tr.insertCell()
-      let td_n1Found = tr.insertCell()
-      let td_n2Found = tr.insertCell()
-      let td_mediaFound = tr.insertCell()
-      
-      td_nmFound.innerText = student[0].nm
-      td_nameFound.innerText = student[0].name
-      td_lastNameFound.innerText = student[0].lastName
-      td_classFound.innerText = student[0].turma
-      td_n1Found.innerText = student[0].n1
-      td_n2Found.innerText = student[0].n2
-      td_mediaFound.innerText = student[0].media()
-      document.getElementById("searchNM").value=''
-    }
-  }
 
   async function deleteStudent(){
     let deleteNM = document.getElementById('deleteNM').value
-    deleteNM = parseFloat(deleteNM)
-    var modalMessageSuccess = new bootstrap.Modal(document.getElementById('messageSuccess'))   
+    deleteNM = parseFloat(deleteNM)      
     let studentID = null
     // get no banco para buscar o id do doc do aluno no firebase
     await db.collection("SchoolJS").where("nm", "==", deleteNM).get()
@@ -239,7 +188,7 @@ async function getStudentSearch(){
     }else{
       db.collection("SchoolJS").doc(studentID).delete().then(()=>{
         showStudent()
-        modalMessageSuccess.show()
+        alert('Aluno excluído com sucesso!')
         document.getElementById('deleteNM').value=''
       }).catch(err=>{
         console.log("Não foi possível excluir o aluno. ", err)
