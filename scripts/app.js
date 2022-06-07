@@ -44,6 +44,11 @@ function aluno(nm, nome, sobrenome, n1, n2, turma){
   }
 }
 
+function getMedia(n1, n2){
+  var result = (n1 + n2) / 2
+  return result
+}
+
 async function verificaDados(){
   var nome = document.getElementById('nameStudent').value
   var sobrenome = document.getElementById('lastNameStudent').value
@@ -53,9 +58,9 @@ async function verificaDados(){
   n2 = parseFloat(n2);
   if(n1 <= 10 && n2 <= 10){
     var nm = setNM()
-    var turma = getClass()  
+    var turma = getClass()
+    var media = getMedia(n1, n2)
     var lengthClass = await verifyClassSize(turma)
-    console.log(lengthClass)
       if(lengthClass == true){
         var a = new aluno(nm, nome, sobrenome, n1, n2, turma)
         db.collection('SchoolJS').add({
@@ -65,6 +70,7 @@ async function verificaDados(){
           nota2: n2,
           nm: nm,
           turma: turma,
+          media: media,
         }).then(doc=>{
           console.log("Documento inserido com sucesso: ", doc)
         }).catch(err=>{
@@ -98,11 +104,9 @@ async function verifyClassSize(turma){
   .then(snapshot=>{
     snapshot.forEach(doc=>{
       let student = doc.data()
-      console.log(student.name)
       classSize = classSize + 1 
     })    
   })
-  console.log(classSize)
   if(classSize <= 9){
     return true
   }else{
@@ -134,7 +138,7 @@ function showStudent(){
       td_sobrenome.innerText = student.lastName;
       td_n1.innerText = student.nota1;
       td_n2.innerText = student.nota2;
-      // td_media.innerText = this.alunoTeste.media();
+      td_media.innerText = student.media;
     })
   })
 
@@ -173,12 +177,10 @@ async function getStudentSearch(){
         td_turma.innerText = student.turma;
         td_n1.innerText = student.nota1;
         td_n2.innerText = student.nota2;
-        // td_media.innerText = this.alunoTeste.media();
+        td_media.innerText = student.media;
         aux = true;
       })
-    })
-    // let student = getStudentByNM(searchNM)
-    // console.log(student)  
+    }) 
     if(aux == false){
       alert("Não foi encontrado nenhum aluno com o NM: " + searchNM)
       document.getElementById("searchNM").value=''
