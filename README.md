@@ -42,7 +42,7 @@
 <br>
 
 <h2 id="baixar">Como posso baixar o projeto?<h2>
-<br>
+
 <h5>Para baixar o projeto basta seguir os próximos passos...</h5>
 <br>
 <h3> - Pré-requisitos:</h3>
