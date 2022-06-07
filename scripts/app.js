@@ -58,6 +58,7 @@ async function createStudent(){
           turma: turma,
           media: media,
         }).then(doc=>{
+          alert('Aluno Criado com sucesso!')
           console.log("Documento inserido com sucesso: ", doc)
         }).catch(err=>{
           console.log(err)
