@@ -43,7 +43,7 @@
 
 <h2 id="baixar">Como posso baixar o projeto?<h2>
 
-<h5>Para baixar o projeto basta seguir os próximos passos...</h5>
+<h4>Para baixar o projeto basta seguir os próximos passos...</h4>
 <br>
 <h3> - Pré-requisitos:</h3>
 <h4>Para clonar o repositório será necessário ter instalado em sua máquina o Git, após isso recomendo utilizar o VSCode para abrir o projeto, mas o editor fica a sua escolha!</h4>
