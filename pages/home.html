@@ -24,7 +24,7 @@
     <div class="title__content">
       <p>Bem-Vindo à SchoolJS <i class="fa-solid fa-book"></i></p>
     </div>
-    <div class="grid_container container">
+    <div class="grid_container">
       <div class="createStudent">
         <p><i class="fa-solid fa-user-plus"></i> Criar Aluno:</p>
         <div class="createStudent__grid">
@@ -55,17 +55,17 @@
             <option value="C">Turma C</option>
             <option value="D">Turma D</option>
           </select>
-          <div class="showStudent__button">
-            <button class="btn btn-primary" onclick="showStudent()">
+          <div class="btn__container">
+            <button class="btn btn-primary btn__showStudent" onclick="showStudent()">
               Mostrar alunos
             </button>
-            <button class="btn btn-warning" onclick="hideStudents()">
+            <button class="btn btn-warning btn__showStudent" onclick="hideStudents()">
               Esconder alunos
             </button>
           </div>
         </div>
 
-        <table class="table">
+        <table class="table table-responsive">
           <thead>
             <th>NM</th>
             <th>Nome</th>
@@ -80,6 +80,7 @@
 
       <div class="deleteStudent">
         <p><i class="fa-solid fa-trash-can"></i> Apagar Aluno:</p>
+        <h6>Selecione o aluno que você deseja excluir:</h6>
         <button
           type="button"
           class="btn btn-danger"
@@ -133,17 +134,18 @@
         <div class="showStudent__container">
           <span>Insira o NM que você deseja buscar:</span>
           <input type="text" id="searchNM" placeholder="Digite o NM..." />
-          <button class="btn btn-primary" onclick="getStudentSearch()">
-            Buscar
-          </button>
-          <button class="btn btn-warning" onclick="clearSearch()">
-            Limpar Busca
-          </button>
+          <div class="btn__container">
+            <button class="btn btn-primary btn__showStudent" onclick="getStudentSearch()">
+              Buscar
+            </button>
+            <button class="btn btn-warning btn__showStudent" onclick="clearSearch()">
+              Limpar Busca
+            </button>
+          </div>          
         </div>
         <div>
-          <table class="table">
+          <table class="table table-responsive">
             <thead>
-              <th>NM</th>
               <th>Nome</th>
               <th>Sobrenome</th>
               <th>Turma</th>
