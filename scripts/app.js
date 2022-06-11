@@ -148,7 +148,6 @@ async function getStudentSearch(){
         let student = doc.data()
         let tr = tbodySearch.insertRow();
 
-        let td_nm = tr.insertCell();
         let td_nome = tr.insertCell();
         let td_sobrenome = tr.insertCell();
         let td_turma = tr.insertCell();
@@ -156,7 +155,6 @@ async function getStudentSearch(){
         let td_n2 = tr.insertCell();
         let td_media = tr.insertCell();
 
-        td_nm.innerText = student.nm;
         td_nome.innerText = student.name;        
         td_sobrenome.innerText = student.lastName;
         td_turma.innerText = student.turma;
