@@ -69,7 +69,7 @@ $git clone https://github.com/victorpraado1005/SchoolJS.git
 <h4> - Firebase</h4>
 <br>
 <h4>Observações:</h4>
-<h4>Caso queira contribuir com o projeto com alguma correção ou nova funcionalidade, fique à vontade, o código é aberto e adorari contar com a sua ajuda!</h4>
+<h4>Caso queira contribuir com o projeto com alguma correção ou nova funcionalidade, fique à vontade, o código é aberto e adoraria contar com a sua ajuda!</h4>
 <br>
 <h2>Autor:</h2>
 <br>
