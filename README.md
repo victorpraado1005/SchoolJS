@@ -38,7 +38,7 @@
 
 <h2 id="acesso">Onde posso acessar o projeto?</h2>
 <br>
-<p>O projeto está hospedado no próprio GitHub, para acessar para acessar o link a seguir: <a href="https://victorpraado1005.github.io/SchoolJS/">victorpraado1005.github.io/SchoolJS</a></p>
+<p>O projeto está hospedado no próprio GitHub, para acessar o link a seguir: <a href="https://victorpraado1005.github.io/SchoolJS/">victorpraado1005.github.io/SchoolJS</a></p>
 <br>
 
 <h2 id="baixar">Como posso baixar o projeto?<h2>
