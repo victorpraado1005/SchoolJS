@@ -9,6 +9,7 @@ body {
 
 .header__container {
   background-color: #3498db;
+  width: 100vw;
   height: 50px;
   color: white;
   display: flex;
@@ -21,11 +22,20 @@ body {
   font-family: 'Schoolbell', cursive;
 }
 
+.title__content p {
+  font-size: 35px;
+  font-family: 'Schoolbell', cursive;
+}
+
 .grid_container {
+  width: 80vw;
   border: 2px solid #3498db;
   border-radius: 20px;
   padding: 40px;
+  margin: 0 auto;
   display: grid;
+  justify-content: center;
+  align-items: center;
   grid-template-columns: auto auto;
   gap: 60px;
 }
@@ -34,19 +44,12 @@ body {
   margin-bottom: 30px;
 }
 
-.title__content p {
-  font-size: 35px;
-  font-family: 'Schoolbell', cursive;
-}
-
 p {
   text-align: center;
   font-size: 25px;
 }
 
 .createStudent {
-  /* border: 1px solid; */
-  /* margin-bottom: 30px; */
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -71,20 +74,127 @@ p {
 
 .showStudent__container {
   display: flex;
+  flex-direction: column;
   justify-content: space-between;
   align-items: center;
-  margin: 30px 0;
+  /* margin: 30px 0; */
 }
 
 .showStudent__container span {
+  margin-bottom: 10px;
   font-size: 20px;
 }
 
+.btn__showStudent{
+  margin: 20px 0;
+  width: 140px;
+  height: 40px;
+  font-size: 14px;
+}
+
 .deleteStudent {
-  /* border: 1px solid; */
   text-align: center;
 }
 
 .deleteStudent button {
   margin-top: 30px;
+}
+
+
+@media (max-width: 1174px){
+  .grid_container {
+    width: 80vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border: none;
+  }
+
+  .createStudent, .showStudent, .deleteStudent, .searchStudent{
+    border: 2px solid #3498db;
+    border-radius: 10px;
+    padding: 40px;
+    width: 95%;
+    height: 60%;
+    min-width: 300px;
+  }
+
+  .deleteStudent{
+    order: 4;
+  }
+
+  @media (max-width: 781px){
+    .table{
+      font-size: 14px;
+    }
+  }
+
+  @media (max-width: 725px){
+    .table{
+      font-size: 14px;
+    }
+  }
+
+  @media (max-width: 670px){
+    .createStudent__grid{
+      display: flex;
+      flex-direction: column;
+    }
+
+    .showStudent__container span{
+      font-size: 16px;
+    }
+  }
+
+  @media (max-width: 635px){
+    .table{
+      font-size: 12px;
+    }
+  }
+
+  @media (max-width: 584px){
+    .btn__container{
+      display: flex;
+      flex-direction: column;
+    }
+
+    .btn__showStudent{
+      margin-bottom: 0px;
+    }
+  }
+
+  @media (max-width: 580px){
+    .table{
+      font-size: 10px;
+    }
+  }
+
+  @media (max-width: 530px){
+    .table{
+      margin-top: 20px;
+      font-size: 8px;
+    }
+  }
+
+  @media (max-width: 460px){
+    .title__content p{
+      font-size: 30px;
+    }
+
+    .modal-body p{
+      font-size: 14px;
+      font-weight: bold;
+    }
+  }
+
+  @media (max-width: 280px){
+    .createStudent, .showStudent, .deleteStudent, .searchStudent{
+      min-width: 260px;
+    }
+
+    .table{
+      font-size: 6px;
+    }
+  }
 }
